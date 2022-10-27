@@ -8,7 +8,22 @@ const Update = () => {
 
     const handleUpdateUser = event =>{
         event.preventDefault();
-        console.log(user);
+        // console.log(user);
+        fetch(`http://localhost:5000/users/${storedUser._id}`, {
+            method: 'PUT',
+            headers: {
+                'content-type': 'application/json'
+            },
+            body: JSON.stringify(user)
+        })
+        .then(res => res.json())
+        .then(data => {
+            if (data.modifiedCount > 0){
+                alert('user updated')
+                console.log(data);
+            }
+            
+        })
     }
 
     const handleInputChange = event =>{
